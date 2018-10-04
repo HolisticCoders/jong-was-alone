@@ -16,14 +16,14 @@ class Character {
             m_size = 100;
             m_color = YELLOW;
             m_velocity = {0, 0};
-            m_jumpStrength = 100;
+            m_jumpStrength = 60;
             m_moveSpeed = 10;
             m_maxVelocity = 20;
             m_decelerationRate = .3;
         }
         void update() {
             /* const float frameTime = GetFrameTime(); */
-            /* m_velocity.y += GRAVITY_STRENGTH * frameTime; */
+            m_velocity.y += GRAVITY_STRENGTH;
 
             m_velocity.x = Lerp(m_velocity.x, 0, m_decelerationRate);
 
@@ -36,6 +36,8 @@ class Character {
             // Update the position and draw me !
             m_position.x += m_velocity.x;
             m_position.y += m_velocity.y;
+
+            limitToScreenBoundaries();
 
             DrawRectangle(m_position.x, m_position.y, m_size, m_size, m_color);
         }
@@ -57,4 +59,25 @@ class Character {
         float m_moveSpeed;
         float m_maxVelocity;
         float m_decelerationRate;
+
+        void limitToScreenBoundaries() {
+            const int width = GetScreenWidth();
+            const int height = GetScreenHeight();
+            if (m_position.x > width - m_size) {
+                m_position.x = width - m_size;
+                m_velocity.x = 0;
+            }
+            if (m_position.x < 0) {
+                m_position.x = 0;
+                m_velocity.x = 0;
+            }
+            if (m_position.y > height - m_size) {
+                m_position.y = height - m_size;
+                m_velocity.y = 0;
+            }
+            if (m_position.y < 0) {
+                m_position.y = 0;
+                m_velocity.y = 0;
+            }
+        }
 };
