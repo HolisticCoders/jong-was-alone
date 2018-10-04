@@ -10,6 +10,9 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "character.cpp"
+#include "checker.cpp"
+
 
 int main()
 {
@@ -18,10 +21,12 @@ int main()
     int screenWidth = 800;
     int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-    
+    InitWindow(screenWidth, screenHeight, "Jong was alone.");
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
+    
+    Character jong;
+    Checker checker;
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -30,14 +35,20 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+        if (IsKeyDown(KEY_LEFT))
+            jong.go_left();
+        if (IsKeyDown(KEY_RIGHT))
+            jong.go_right();
+        if (IsKeyPressed(KEY_SPACE))
+            jong.jump();
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
-
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+            ClearBackground(BLACK);
+            checker.update();
+            jong.update();
 
         EndDrawing();
         //----------------------------------------------------------------------------------
