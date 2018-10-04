@@ -41,7 +41,14 @@ class Character {
 
             DrawRectangle(m_position.x, m_position.y, m_size, m_size, m_color);
         }
+        bool isGrounded() {
+            if (m_position.y >= GetScreenHeight() - m_size)
+                return true;
+            return false;
+        }
         void jump() {
+            if (!isGrounded())
+                return;
             m_velocity.y -= m_jumpStrength;
         }
         void go_left() {
