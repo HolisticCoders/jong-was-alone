@@ -41,6 +41,15 @@ class Character {
 
             DrawRectangle(m_position.x, m_position.y, m_size, m_size, m_color);
         }
+        Vector2 position() {
+            return m_position;
+        }
+        float size() {
+            return m_size;
+        }
+        Color color() {
+            return m_color;
+        }
         bool isGrounded() {
             if (m_position.y >= GetScreenHeight() - m_size)
                 return true;
