@@ -5,6 +5,7 @@
 class Checker {
     public:
         Checker() {
+            // TODO: Make the checker fit the window size.
             const int width = 1024;
             const int height = 1024;
 
