@@ -23,10 +23,21 @@ int main()
 
     InitWindow(screenWidth, screenHeight, "Jong was alone.");
     SetTargetFPS(60);
+    ToggleFullscreen();
     //--------------------------------------------------------------------------------------
     
     Character jong;
     Checker checker;
+    Camera2D camera;
+
+    // Initialize the camera with default values.
+    // Target the player position.
+    camera.target = jong.position();
+    camera.offset = (Vector2) {0, 0};
+    camera.rotation = .0f;
+    camera.zoom = 1.0f;
+
+    jong.setCamera(&camera);
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -47,8 +58,13 @@ int main()
         BeginDrawing();
 
             ClearBackground(BLACK);
-            checker.update();
-            jong.update();
+
+            BeginMode2D(camera);
+
+                checker.update();
+                jong.update();
+
+            EndMode2D();
 
         EndDrawing();
         //----------------------------------------------------------------------------------
