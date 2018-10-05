@@ -82,11 +82,13 @@ class Character {
         float m_moveSpeed;
         float m_maxVelocity;
         float m_decelerationRate;
-        Camera2D* m_camera;
+        Camera2D* m_camera = nullptr;
         int m_cameraTrackingThreshold;
         float m_cameraTrackingSpeed;
 
         void cameraTracking() {
+            if (!m_camera)
+                return;
             const float frameTime = GetFrameTime();
             const int width = GetScreenWidth();
             const int height = GetScreenHeight();
