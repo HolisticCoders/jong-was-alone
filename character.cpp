@@ -1,7 +1,7 @@
 #include "raylib.h"
 
 
-const float GRAVITY_STRENGTH = 9.81;
+constexpr float GRAVITY_STRENGTH = 9.81;
 
 float Lerp(float start, float end, float amount)
 {
