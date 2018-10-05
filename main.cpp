@@ -23,7 +23,6 @@ int main()
 
     InitWindow(screenWidth, screenHeight, "Jong was alone.");
     SetTargetFPS(60);
-    ToggleFullscreen();
     //--------------------------------------------------------------------------------------
     
     Character jong;
